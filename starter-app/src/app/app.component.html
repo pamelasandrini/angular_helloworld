@@ -1,0 +1,36 @@
+
+<title>Node & Angular course</title>
+<!-- Display the navigation bar menu and check if user is admin -->
+
+<div class="navbar">
+  <a class="navbar-brand" href="#">
+    <img src="assets/images/starter.jpeg" height="60" alt="">
+  </a>
+  <!-- Display User Name and Vendor Name associated with logged user -->
+  <p class="align-text-bottom" style="margin-bottom: 0;">
+    <label class="basic-form-label">User Name</label>
+    <span>( user@email.com )</span>
+    <a (click)="logOffSSO()"><i class="fas fa-sign-out-alt custom-pointer"></i></a>
+  </p>
+</div>
+<nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center">
+  <a href="/" class="navbar-brand d-flex w-50 mr-auto">Basic Starter</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav" *ngIf="!logout">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#adduser">Add User</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#admin">Admin</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#logsearch">Logs</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>

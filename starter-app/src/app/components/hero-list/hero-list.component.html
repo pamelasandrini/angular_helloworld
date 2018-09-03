@@ -1,0 +1,74 @@
+<!-- Loading gif -->
+<div *ngIf="loading" class="container">
+  <div class="loader mx-auto"></div>
+</div>
+<div class="container" *ngIf="!loading">
+
+  <div id="tableContent" class="container" *ngIf="!loading">
+    <div class="row" [hidden]="!data.length">
+      <div class="col-sm-8"></div>
+      <div class="col-sm-4">
+        <form>
+          <div class="input-group">
+            <input id="searchTextInput" class="form-control" #searchText (keyup)="0" placeholder="Enter text to search...">
+          </div>
+        </form>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <p *ngIf="!data.length">No Users Found</p>
+      <table class="table table-hover" [mfData]="(data | userListTableSearch : searchText.value)" #mf="mfDataTable" [mfRowsOnPage]="2" *ngIf="data.length">
+        <thead>
+          <tr>
+            <th data-field="name">Name</th>
+            <th data-field="name">Nickname</th>
+            <th data-field="name">Hobbie</th>
+            <th data-field="name" class="text-center">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let user of mf.data">
+
+            <!-- Name -->
+            <td>
+              <div *ngIf="user && user.name; then name"></div>
+              <ng-template #name>{{ user.name || NA }}</ng-template>
+            </td>
+
+            <!-- User ID -->
+            <td>
+              <div *ngIf="user && user.nickname; then nickname"></div>
+              <ng-template #nickname>{{ user.nickname }}</ng-template>
+            </td>
+
+            <!-- Role -->
+            <td>
+              <div *ngIf="user && user.hobbie; then hobbie"></div>
+              <ng-template #hobbie>{{ user.hobbie }}</ng-template>
+            </td>
+
+            <!-- Actions -->
+            <td class="text-center">
+              <!-- Permanent Delete User -->
+              <span class="icon" class="custom-pointer">
+                <a (click)="permanentDeleteUser(user)">
+                  <i class="fa fa-trash" style="color:#dc143c"></i>
+                </a>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="7">
+              <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25,50,100]"></mfBootstrapPaginator>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

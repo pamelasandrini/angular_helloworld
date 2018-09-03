@@ -1,0 +1,12 @@
+<h1 [textContent]="'Name: ' + person.name"></h1>
+
+<button (click)="person = male" [disabled]="person.sex=='m'">Male</button>
+<button (click)="person = female" [disabled]="person.sex=='f'">Female</button>
+
+<p>
+  <img [src]="person.photo" [alt]="person.name" [title]="person.name">
+</p>
+<p [hidden]="!person.rating">
+  Rating:
+  <span [innerHTML]="'&#10032;'.repeat(person.rating)"></span>
+</p>

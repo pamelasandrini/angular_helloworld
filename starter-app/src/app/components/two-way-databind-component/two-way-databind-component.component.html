@@ -1,0 +1,6 @@
+<div>
+  <h1>Two Way Databind</h1>
+  <label>Name:</label>
+  <input type="text" [(ngModel)]="word">
+  <h3 [hidden]="!word">Hello {{word}}!</h3>
+</div>
